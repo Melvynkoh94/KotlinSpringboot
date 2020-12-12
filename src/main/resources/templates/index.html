@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload MultipartFile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-md-15 table-responsive">
+            <h2>Retailer Transactions</h2>
+            <table id="customerTable" class="table">
+                <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Invoice #</th>
+                    <th>Stock Code</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Invoice Date</th>
+                    <th>Unit Price</th>
+                    <th>Cust. ID</th>
+                    <th>Country</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="file, rowStat: ${files}">
+                    <td th:text="${rowStat.count}">1</td>
+                    <td th:text="${file.InvoiceNo}">invoice#</td>
+                    <td th:text="${file.StockCode}">code</td>
+                    <td th:text="${file.Description}"></td>
+                    <td th:text="${file.Quantity}"></td>
+                    <td th:text="${file.InvoiceDate}"></td>
+                    <td th:text="${file.UnitPrice}"></td>
+                    <td th:text="${file.CustomerID}"></td>
+                    <td th:text="${file.Country}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                <a href="/index" class="btn btn-light btn-block" role="button">Back to Upload Form</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

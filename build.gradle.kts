@@ -14,6 +14,7 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -23,6 +24,10 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.11.2")
+	implementation("com.vhl.blackmo:kotlin-grass-jvm:0.4.1")
+	implementation("com.github.doyaaaaaken:kotlin-csv-jvm:0.13.0")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
