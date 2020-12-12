@@ -1,6 +1,5 @@
-package com.assessment.kotlinspringboot.utils
+package com.assessment.kotlinspringboot.service
 
-import jdk.nashorn.internal.objects.annotations.Property
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.PropertySource
@@ -25,6 +24,17 @@ class FileStorageImpl: FileStorage {
     override fun store(file: MultipartFile){
         Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()))
     }
+
+//    override fun loadFile(): BufferedReader? {
+//        var fileReader: BufferedReader? = null
+//        try{
+//            fileReader = BufferedReader(FileReader(rootLocation.resolve(filename).toString()))
+//        } catch (e: Exception){
+//            log.error("Error reading csv!")
+//        }
+//        return fileReader
+//
+//    }
 
     override fun loadFile(): Resource {
         val file = rootLocation.resolve(filename)

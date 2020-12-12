@@ -1,10 +1,29 @@
 package com.assessment.kotlinspringboot.model
 
-data class Transaction(val InvoiceNo: Int = 0,
-                       val StockCode: String = "",
-                       val Description: String = "",
-                       val Quantity: Int? = null,
-                       val InvoiceDate: String? = null,
-                       val UnitPrice: Double? = null,
-                       val CustomerID: Int? = null,
-                       val Country: String? = null)
+import com.opencsv.bean.CsvBindByName
+
+data class Transaction(
+    @CsvBindByName
+    val InvoiceNo: String? = null,
+
+    @CsvBindByName
+    val StockCode: String = "",
+
+    @CsvBindByName
+    val Description: String = "",
+
+    @CsvBindByName
+    val Quantity: Int? = null,
+
+    @CsvBindByName
+    val InvoiceDate: String? = null,
+
+    @CsvBindByName
+    val UnitPrice: Double? = null,
+
+    @CsvBindByName
+    val CustomerID: Int? = null,
+
+    @CsvBindByName
+    val Country: String? = null
+)

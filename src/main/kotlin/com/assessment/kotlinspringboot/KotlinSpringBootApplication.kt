@@ -1,6 +1,6 @@
 package com.assessment.kotlinspringboot
 
-import com.assessment.kotlinspringboot.utils.FileStorage
+import com.assessment.kotlinspringboot.service.FileStorage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication

@@ -28,6 +28,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.11.2")
 	implementation("com.vhl.blackmo:kotlin-grass-jvm:0.4.1")
 	implementation("com.github.doyaaaaaken:kotlin-csv-jvm:0.13.0")
+	implementation("com.opencsv:opencsv:5.3")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
