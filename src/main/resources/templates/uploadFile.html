@@ -9,7 +9,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+<script>
 
+function loadTimer() {
+    var source = new EventSource("/flux");
+    source.onmessage = function(event) {
+      document.getElementById("timer").innerHTML = event.data
+    };
+}
+
+</script>
 <body>
 <div class="container h-100">
     <div class="h-100">
@@ -21,11 +30,12 @@
                         <label class="control-label" for="uploadfile">Upload File:</label>
                         <input type="file" class="form-control" id="uploadfile" placeholder="Upload File"  name="uploadfile"></input>
                     </div>
-                    <button type="submit" class="btn btn-default" id="btnSubmit">Upload</button>
+                    <button type="submit" onclick="loadTimer()" class="btn btn-default" id="btnSubmit">Upload</button>
                 </form>
                 <div th:if="${message}">
                     <span th:text="${message}"/>
                 </div>
+                <p class="text-danger" id="timer"></p>
                 <a href="/index" class="btn btn-default" role="button">See Retailer Transactions</a>
 
             </div>

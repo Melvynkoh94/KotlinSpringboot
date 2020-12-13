@@ -33,13 +33,27 @@ class RetailerIndexController {
         return "index.html"
     }
 
+    @GetMapping("/index/{page}/{size}/next")
+    fun getNextPageList(@PathVariable page: Int, @PathVariable size: Int): String{
+        val newPage: Int = page.inc()
+        return "redirect:/index/$newPage/$size"
+    }
+
+    @GetMapping("/index/{page}/{size}/prev")
+    fun getPrevPageList(@PathVariable page: Int, @PathVariable size: Int): String{
+        val newPage: Int = page.dec()
+        if(page == 1) return "redirect:/index/$page/$size"
+        return "redirect:/index/$newPage/$size"
+    }
+
     @GetMapping("/index/{page}/{size}")
     fun getPaginatedList(model: Model, @PathVariable page: Int, @PathVariable size: Int): String{
         val transactionList = service.csvObjectMapper()
         val (startIndex, endIndex) = service.startAndEndIndex(page, size)
         val transactionSubList = transactionList.subList(startIndex, endIndex)
 
-        model.addAttribute("count", transactionList.size)
+        model.addAttribute("currentPage", page)
+        model.addAttribute("size", size)
         model.addAttribute("files", transactionSubList)
         log.info("Paginated list: {}", transactionSubList.forEach { println(it.toString()) })
 

@@ -33,13 +33,14 @@ class RetailerUploadController {
     val logger: Logger = LoggerFactory.getLogger(RetailerUploadController::class.java)
 
     @GetMapping("/upload")
-    fun index(): String {
+    fun home(): String {
         return "uploadFile.html"
     }
 
     @GetMapping(path = ["/flux"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
     fun streamFlux() : Flux<String> {
-        return Flux.interval(Duration.ofSeconds(1))
+        logger.info("Flux loaded...")
+        return Flux.interval(Duration.ofSeconds(0.05.toLong()))
                 .map { elements -> "In Progress at "+LocalTime.now().toString() }
     }
 
@@ -61,12 +62,6 @@ class RetailerUploadController {
         logger.info("Total number of lines: " + content[0])
         logger.info("file content = {}", transactionList)
         return ServiceResponse.ok(content)
-    }
-
-    @GetMapping("/")
-    fun home(model: Model): String {
-        model["title"] = "WELCOME TO KOTLIN BACKEND SERVICES!!" //alt to java model.addAttribute("title","Homepage")
-        return "home"
     }
 
     @GetMapping("/uploadFile")
