@@ -12,6 +12,12 @@
 
 <body>
 <div class="container h-100">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" th:href="@{'/index/'+${currentPage}+'/'+${size}+'/prev'}">Previous</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{'/index/'+${currentPage}+'/'+${size}+'/next'}">Next</a></li>
+        </ul>
+    </nav>
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-md-15 table-responsive">
             <h2>Retailer Transactions</h2>

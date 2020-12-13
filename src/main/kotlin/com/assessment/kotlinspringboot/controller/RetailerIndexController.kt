@@ -64,20 +64,21 @@ class RetailerIndexController {
     fun searchList(model: Model, @PathVariable column: String, @PathVariable search: String): String{
         val transactionList = service.csvObjectMapper()
         val searchResult: List<Transaction> = when (column.toLowerCase().trim()) {
-            "invoiceno" -> transactionList.filter { item -> search == item.InvoiceNo }
-            "stockcode" -> transactionList.filter { item -> search == item.StockCode }
-            "description" -> transactionList.filter { item -> search == item.Description }
+            "invoiceno" -> transactionList.filter { item -> search == item.InvoiceNo}
+            "stockcode" -> transactionList.filter { item -> search == item.StockCode}
+            "description" -> transactionList.filter { item -> search == item.Description}
             "invoicedate" -> transactionList.filter { item -> search == item.InvoiceDate }
             "customerid" -> transactionList.filter { item -> search.toIntOrNull() == item.CustomerID }
-            "country" -> transactionList.filter { item -> search == item.Country }
-            else -> transactionList.filter { item -> search == item.InvoiceNo }
+            "country" -> transactionList.filter { item -> search == item.Country}
+            else -> transactionList.filter { item -> search == item.InvoiceNo}
         }
 
         model.addAttribute("files", searchResult)
+        log.info("Search results: {}", searchResult.forEach { println(it.toString()) })
         return "index.html"
     }
 
-    @GetMapping("/files/{filename}")
+    @GetMapping("/index/{page}/{size}/download")
     fun downloadFile(@PathVariable filename: String): ResponseEntity<Resource> {
         val file = fileStorage.loadFile()
         return ResponseEntity.ok()
