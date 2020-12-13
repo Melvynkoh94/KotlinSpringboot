@@ -5,13 +5,23 @@ import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.opencsv.bean.CsvToBean
 import com.opencsv.bean.CsvToBeanBuilder
 import com.vhl.blackmo.grass.dsl.grass
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.PropertySource
+import org.springframework.stereotype.Service
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 import java.lang.Exception
+import java.nio.file.Path
+import java.nio.file.Paths
 
+@Service
+@PropertySource("classpath:application.properties")
+class RetailerService {
 
-object Util {
+    val rootLocation: Path = Paths.get("uploadedDatafile")
+    @Value("\${retail.dataFilename}") val filename: String = ""
+
     @ExperimentalStdlibApi
     fun csvFileMapper(fileInput: File): List<Transaction> {
         val csvContents = csvReader().readAllWithHeader(fileInput.inputStream())
@@ -19,11 +29,11 @@ object Util {
     }
 
     fun csvObjectMapper(): List<Transaction>{
-        var fileReader: BufferedReader? = null
+        var fileReader: BufferedReader
         var csvToBean: CsvToBean<Transaction>?
         var transactions: List<Transaction>? = null
         try{
-            fileReader = BufferedReader(FileReader("uploadedDatafile/data.csv"))
+            fileReader = BufferedReader(FileReader(rootLocation.resolve(filename).toString()))
             csvToBean = CsvToBeanBuilder<Transaction>(fileReader)
                     .withType(Transaction::class.java)
                     .withIgnoreLeadingWhiteSpace(true)
@@ -47,18 +57,5 @@ object Util {
         }
         return Pair(start, end)
     }
-
-//    fun csvObjectMapper(reader: BufferedReader?): List<Transaction>? {
-//        var csvToBean: CsvToBean<Transaction>
-//        var transactionList: List<Transaction>? = null
-//        csvToBean = CsvToBeanBuilder<Transaction>(reader)
-//                .withType(Transaction::class.java)
-//                .withIgnoreLeadingWhiteSpace(true)
-//                .build()
-//
-//        transactionList = csvToBean.parse()
-//
-//        return transactionList
-//    }
 
 }
