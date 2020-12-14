@@ -64,13 +64,13 @@ class RetailerIndexController {
     fun searchList(model: Model, @PathVariable column: String, @PathVariable search: String): String{
         val transactionList = service.csvObjectMapper()
         val searchResult: List<Transaction> = when (column.toLowerCase().trim()) {
-            "invoiceno" -> transactionList.filter { item -> search == item.InvoiceNo}
-            "stockcode" -> transactionList.filter { item -> search == item.StockCode}
-            "description" -> transactionList.filter { item -> search == item.Description}
+            "invoiceno" -> transactionList.filter { item -> search.equals(item.InvoiceNo, ignoreCase = true)}
+            "stockcode" -> transactionList.filter { item -> search.equals(item.StockCode, ignoreCase = true)}
+            "description" -> transactionList.filter { item -> search.equals(item.Description, ignoreCase = true)}
             "invoicedate" -> transactionList.filter { item -> search == item.InvoiceDate }
             "customerid" -> transactionList.filter { item -> search.toIntOrNull() == item.CustomerID }
-            "country" -> transactionList.filter { item -> search == item.Country}
-            else -> transactionList.filter { item -> search == item.InvoiceNo}
+            "country" -> transactionList.filter { item -> search.equals(item.Country, ignoreCase = true) }
+            else -> transactionList.filter { item -> search.equals(item.InvoiceNo, ignoreCase = true)}
         }
 
         model.addAttribute("files", searchResult)
