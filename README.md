@@ -19,27 +19,27 @@ gradlew bootRun
 [Link to homepage](http://localhost:8080/upload):
 This Spring Boot app is configured to port 8080, and the homepage is this particular URL - http://localhost:8080/upload
 
-##Steps
+## Steps
 
-####Home
+#### Home
 ![Homepage](screenshots/UploadPage.PNG)
 
-####data.csv Uploaded
+#### data.csv Uploaded
 ![Uploaded data.csv](screenshots/UploadPage_2.PNG)
 
-####Transaction List-All Page
+#### Transaction List-All Page
 Once "See Retailer Transactions" is clicked, it'll show all the whole list of transactions form the data.csv uploaded
 ![IndexPage](screenshots/IndexPage.PNG)
 
-####Transaction Pagination
+#### Transaction Pagination
 The URL pattern for the page number REST call is as such /index/{page number}/{number of rows}
 ![IndexPage](screenshots/IndexPage_pageNumber.PNG)
 
-####Searching for Transaction - Country
+#### earching for Transaction - Country
 URL Pattern: /index/search/{column header}/{search}
 ![SearchPage](screenshots/SearchPage_Singapore.PNG)
 
-####Searching for Transaction - Stockcode
+#### earching for Transaction - Stockcode
 URL Pattern: /index/search/{column header}/{search}
 ![SearchPage](screenshots/SearchPage_Stockcode.PNG)
 
